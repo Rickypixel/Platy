@@ -4,130 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PlatypusCoin - The Meme Token</title>
+    <title>$Platy - The Platypus Coin</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Condensed:wght@300;400;700&display=swap');
 
         body {
             font-family: 'Roboto Condensed', sans-serif;
-            background: black; /* Основной фон */
+            background: black; 
             color: white;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
-            overflow-x: hidden; /* Запрет горизонтальной прокрутки */
+            position: relative;
         }
 
-        h1 {
+        h1, h2 {
             font-family: 'Anton', sans-serif;
-            font-size: 4rem;
-            margin: 20px 0;
             color: #CCFF00;
+            margin: 10px 0;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        .container {
+        h1 {
+            font-size: 4rem;
+            -webkit-text-stroke: 2px white; /* Белый контур для текста */
+        }
+
+        .main-container {
             text-align: center;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             width: 100%;
             max-width: 1200px;
-        }
-
-        .top-image {
-            width: 300px;
-            height: auto;
-            margin: 20px 0;
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: row; /* Горизонтальная структура */
-            justify-content: center;
-            align-items: flex-start;
-            margin: 30px 0;
-            width: 100%;
-            max-width: 800px;
+            margin: 20px auto;
         }
 
         .image-container {
             display: flex;
-            flex-direction: column; /* Изображения друг под другом */
-            align-items: center;
-            margin-right: 30px; /* Отступ от текста */
-        }
-
-        .left-image {
-            width: 200px;
-            height: auto;
-            margin-bottom: 15px; /* Отступ между изображениями */
-        }
-
-        .description {
-            font-size: 1.5rem;
-            line-height: 2;
-            text-align: left;
-        }
-
-        .description p {
-            margin: 5px 0;
-        }
-
-        .description span.question {
-            color: #999;
-        }
-
-        .description span.answer-yes {
-            color: #4CAF50;
-        }
-
-        .description span.answer-no {
-            color: #FF3333;
-        }
-
-        .prompt {
-            font-size: 1.2rem;
-            margin: 20px 0;
-            color: #FF8C42;
-        }
-
-        .button {
-            background-color: #FF5733;
-            color: white;
-            padding: 15px 30px;
-            font-size: 1.5rem;
-            text-decoration: none;
-            border-radius: 30px;
-            display: inline-block;
-            margin-top: 10px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .button:hover {
-            background-color: #c7411f;
-            transform: scale(1.05);
-        }
-
-        .social-links {
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
             margin-top: 40px;
         }
 
-        .social-links a {
-            margin: 0 15px;
-            font-size: 1.5rem;
-            color: #FF5733;
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .image-block {
+            position: relative;
+            margin: 20px;
+            text-align: center;
         }
 
-        .social-links a:hover {
-            color: #c7411f;
+        .image-block img {
+            width: 300px;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .image-text {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: #CCFF00;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
         footer {
@@ -138,8 +80,8 @@
 
         .coin {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background-image: url('coin.png');
             background-size: cover;
             animation: fall 5s linear infinite;
@@ -156,109 +98,166 @@
             }
         }
 
-        /* Анимация звезд */
         .star {
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: yellow;
             border-radius: 50%;
-            opacity: 0;
-            animation: star-twinkle 3s ease-in-out infinite;
+            box-shadow: 0 0 10px #b0e0e6;
+            animation: blink 6s ease-in-out infinite;
+            pointer-events: none;
         }
 
-        @keyframes star-twinkle {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.5);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0);
-            }
+        @keyframes blink {
+            0% { opacity: 0; }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .question-section {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 30px 0;
+        }
+
+        .question-section p {
+            margin: 10px 0;
+        }
+
+        .question-section strong {
+            color: #FF0000; 
+        }
+
+        .question-section strong.yes {
+            color: #00FF00;
+        }
+
+        .buy-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .buy-button {
+            padding: 15px 30px;
+            background-color: #CCFF00;
+            color: black;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #fff700;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
         }
     </style>
 </head>
+
 <body>
-    <!-- Монетки -->
     <div id="coins-container"></div>
 
-    <div class="container">
-        <!-- Название -->
-        <h1>PlatypusCoin</h1>
+    <h1>$Platy</h1>
+    <h2>The Platypus Coin That Rules the Meme World</h2>
 
-        <!-- Верхнее изображение -->
-        <img class="top-image" src="P.png" alt="PlatypusCoin Meme">
+    <img src="p.png" alt="Platypus Image P" style="width: 400px; height: auto; margin: 20px 0;">
 
-        <!-- Основной контент -->
-        <div class="main-content">
-            <!-- Изображения -->
-            <div class="image-container">
-                <img class="left-image" src="P2.png" alt="Second Platypus Image">
-                <img class="left-image" src="P3.png" alt="Third Platypus Image">
+    <div class="main-container">
+        <div class="image-container">
+            <div class="image-block">
+                <div class="image-text">I know you're tired of shitcoins.</div>
+                <img src="P0.png" alt="Platypus Image P0">
             </div>
-            
-            <!-- Описание -->
-            <div class="description">
-                <p><span class="question">Is PlatypusCoin a meme? </span><span class="answer-yes">Yes.</span></p>
-                <p><span class="question">Does it do anything? </span><span class="answer-no">No.</span></p>
-                <p><span class="question">Does it have real value? </span><span class="answer-no">No.</span></p>
-                <p><span class="question">Is there a whitelist? </span><span class="answer-no">No.</span></p>
-                <p><span class="question">Is there a roadmap? </span><span class="answer-no">No.</span></p>
-                <p><span class="question">Is there any marketing? </span><span class="answer-no">No.</span></p>
-                <p><span class="question">Should you expect anything from this project? </span><span class="answer-no">No.</span></p>
-                <p><span class="question">Should you buy this token? </span><span class="answer-no">No.</span></p>
-                <p><span class="question">Is it just a dumb meme token? </span><span class="answer-yes">Yes.</span></p>
+            <div class="image-block">
+                <div class="image-text">But here, you can catch a real goldfish.</div>
+                <img src="P3.png" alt="Platypus Image P3">
+            </div>
+            <div class="image-block">
+                <div class="image-text">You can sleep well knowing you've found a gem.</div>
+                <img src="P2.png" alt="Platypus Image P2">
             </div>
         </div>
 
-        <!-- Подпись над кнопкой -->
-        <p class="prompt">If you still want to buy some PlatypusCoin:</p>
+        <div class="question-section">
+            <p>Is $Platy a meme? <strong class="yes">Yes.</strong></p>
+            <p>Does it do anything? <strong>No.</strong></p>
+            <p>Does it have real value? <strong>No.</strong></p>
+            <p>Is there a whitelist? <strong>No.</strong></p>
+            <p>Is there a roadmap? <strong>No.</strong></p>
+            <p>Is there any marketing? <strong>No.</strong></p>
+            <p>Should you expect anything from this project? <strong>No.</strong></p>
+           
+            <p>Is it just a dumb meme token? <strong class="yes">Yes.</strong></p>
+        </div>
 
-        <!-- Кнопка покупки -->
-        <a href="https://your-purchase-link.com" class="button">Soon...</a>
+        <div class="buy-section">
+            <p style="color: #00FF00;">If you still want to buy some PlatypusCoin</p>
+            <a href="https://www.orca.so/?tokenIn=So11111111111111111111111111111111111111112&tokenOut=9iC4fUpXMCsazARZEfo2AABAd6nbDzC788PzzuN9unAR" target="_blank" class="buy-button">Buy</a>
+        </div>
 
-        <!-- Социальные сети -->
-        <div class="social-links">
-            <a href="https://x.com/Platypuscoinz">Twitter</a>
-            <a href="https://t.me/PlatypusCoin" target="_blank">Telegram</a>
+        <img src="P4.png" alt="Platypus Image P4" style="margin-top: 40px; width: 400px; height: auto;">
+        <p style="color: #CCFF00;">Liquidity Pool Will be locked</p>
+
+        <div class="social-icons">
+            <a href="https://x.com/Platypuscoinz" target="_blank" rel="noopener noreferrer">
+                <img src="twitter.png" alt="Twitter">
+            </a>
+            <a href="https://t.me/PlatypusCoin" target="_blank" rel="noopener noreferrer">
+                <img src="telegram.png" alt="Telegram">
+            </a>
         </div>
     </div>
 
     <footer>
-        © 2024 PlatypusCoin. All rights reserved.
+        © 2024 $Platy. All rights reserved.
     </footer>
 
     <script>
-        // Анимация падающих монеток
-        const coinsContainer = document.getElementById('coins-container');
-        for (let i = 0; i < 50; i++) {
-            const coin = document.createElement('div');
-            coin.classList.add('coin');
-            coin.style.left = Math.random() * 100 + 'vw';
-            coin.style.animationDelay = Math.random() * 5 + 's';
-            coinsContainer.appendChild(coin);
+        function createFallingCoins() {
+            const coinsContainer = document.getElementById('coins-container');
+            for (let i = 0; i < 20; i++) {
+                const coin = document.createElement('div');
+                coin.classList.add('coin');
+                coin.style.left = Math.random() * 100 + 'vw';
+                coin.style.animationDelay = Math.random() * 5 + 's';
+                coinsContainer.appendChild(coin);
+            }
         }
 
-        // Генерация звезд
-        const starColors = ['#ffffff', '#00ccff', '#9900ff', '#33ff00'];
         function createStar() {
+            const colors = ['#ccff00', '#cc00cc', '#00ffff', '#ff6600'];
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.animationDelay = Math.random() * 2 + 's';
-            star.style.backgroundColor = starColors[Math.floor(Math.random() * starColors.length)];
+            star.style.top = Math.random() * 90 + 'vh'; // Ограничиваем по высоте
+            star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.appendChild(star);
 
-            // Удаление звезды после окончания анимации
-            setTimeout(() => star.remove(), 3000);
+            setTimeout(() => star.remove(), 6000);
         }
 
-        setInterval(createStar, 250); // Каждые 250 мс добавляем новую звезду
+        setInterval(createStar, 500);
+
+        document.addEventListener('DOMContentLoaded', createFallingCoins);
     </script>
 </body>
 </html>
